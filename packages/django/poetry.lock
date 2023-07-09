@@ -191,19 +191,35 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-polymorphic"
+version = "3.1.0"
+description = "Seamless polymorphic inheritance for Django models"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-polymorphic-3.1.0.tar.gz", hash = "sha256:d6955b5308bf6e41dcb22ba7c96f00b51dfa497a8a5ab1e9c06c7951bf417bf8"},
+    {file = "django_polymorphic-3.1.0-py3-none-any.whl", hash = "sha256:08bc4f4f4a773a19b2deced5a56deddd1ef56ebd15207bf4052e2901c25ef57e"},
+]
+
+[package.dependencies]
+Django = ">=2.1"
+
+[[package]]
 name = "django-quanttide"
-version = "0.1.0b1"
+version = "0.1.0b2"
 description = "量潮Django SDK"
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "django_quanttide-0.1.0b1-py3-none-any.whl", hash = "sha256:748d92336d13e2f8b4b1ed10ca3970b37861c5eff71f3453d0e99a9b14e694d6"},
-    {file = "django_quanttide-0.1.0b1.tar.gz", hash = "sha256:4491a675bede610e94afc88e43f1f99586b648656e323a7cf4be5dfbff7dfff6"},
+    {file = "django_quanttide-0.1.0b2-py3-none-any.whl", hash = "sha256:6fe6c316d2634464c07ef45ec0bdadae17ebd9dd3d29d5ac4d5ee500132afeff"},
+    {file = "django_quanttide-0.1.0b2.tar.gz", hash = "sha256:a398278b947b0b3e793c2a05b71701ccd6f1fde5d81a469df28cb4ce45526f05"},
 ]
 
 [package.dependencies]
 Django = ">=3.1"
+django-polymorphic = ">=3.1.0,<4.0.0"
 djangorestframework = ">=3.0"
 
 [[package]]
@@ -419,4 +435,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "5092611a71f76fdf5883be5f30db491c1b00d3d07c9581cecaf04259f9581411"
+content-hash = "b474e5f024b0836691b6104fd247503ecea775406c1f76374a7688adf372a124"

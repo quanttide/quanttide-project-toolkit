@@ -6,13 +6,17 @@ from .fields import (
     ProjectTypeField, MatterTypeField,
     PriorityField, StatusField,
 )
-from .models import (
+from .projects import (
     BaseProject
+)
+from .matters import (
+    BaseMatter
 )
 
 
 __all__ = [
     'BaseProject',
+    'BaseMatter',
     'ProjectTypeField',
     'MatterTypeField',
     'StatusField',
