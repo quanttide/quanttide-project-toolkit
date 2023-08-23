@@ -40,14 +40,18 @@ class StatusChoices(models.TextChoices):
 
     遵循项目和事项的生命周期的定义，使用形容词或动名词描述。
     """
+    # 未开始
     DRAFT = 'drafting', '起草中'
     EVALUATION = 'evaluating', '评估中'
     AWAITING = 'awaiting', '等待开始'
+    # 进行中
     IN_PROGRESS = 'in_progress', '进行中'
     DELAYED = 'delayed', '已延迟'
     PAUSED = 'paused', '已暂停'
+    # 评审中
     REVIEWING = 'reviewing', '评审中'
     DELIVERING = 'delivering', '交付中'
     SUMMARIZING = 'summarizing', '复盘中'
+    # 已结束
     COMPLETED = 'completed', '已完成'
     CANCELLED = 'cancelled', '已取消'
