@@ -10,13 +10,17 @@ from .projects import (
     BaseProject
 )
 from .matters import (
-    BaseMatter
+    BaseMatter, BaseMillstone, BaseEpic, BaseStory, BaseTask, BaseDefect
 )
 
 
 __all__ = [
+    # Project classes
     'BaseProject',
+    # Matter classes
     'BaseMatter',
+    'BaseTask',
+    # Fields
     'ProjectTypeField',
     'MatterTypeField',
     'StatusField',
