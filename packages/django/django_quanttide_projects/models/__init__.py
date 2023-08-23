@@ -19,7 +19,11 @@ __all__ = [
     'BaseProject',
     # Matter classes
     'BaseMatter',
+    'BaseMillstone',
+    'BaseEpic',
+    'BaseStory',
     'BaseTask',
+    'BaseDefect',
     # Fields
     'ProjectTypeField',
     'MatterTypeField',

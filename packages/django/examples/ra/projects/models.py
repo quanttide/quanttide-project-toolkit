@@ -1,7 +1,8 @@
-from django.db import models
+from django_quanttide_projects.models import BaseTask, BaseStory, BaseProject
 
-# Create your models here.
-from django_quanttide_projects.models import BaseTask, BaseStory
+
+class RAProject(BaseProject):
+    pass
 
 
 class RAStory(BaseStory):

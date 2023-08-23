@@ -8,8 +8,8 @@ class BaseProject(models.Model):
     项目模型基类
     """
     name = models.NameField()
-    title = models.TitleField()
-    description = models.DescriptionField()
+    verbose_name = models.VerboseNameField()
+    readme = models.ReadmeField()
     type = ProjectTypeField()
     status = StatusField()
     priority = PriorityField()
