@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django_quanttide_projects.models import (
-    ProjectTypeChoices, StatusChoices, PriorityChoices
+    StatusChoices, PriorityChoices
 )
 
 from tests.models import Project
@@ -16,6 +16,6 @@ class BaseProjectTest(TestCase):
         self.assertEqual(project.name, "test-name")
         self.assertEqual(project.verbose_name, "Test Project")
         self.assertEqual(project.readme, "README for test project")
-        self.assertEqual(project.type, ProjectTypeChoices.DEFAULT)
+        self.assertEqual(project.type, 'default')
         self.assertEqual(project.status, StatusChoices.DRAFT)
         self.assertEqual(project.priority, PriorityChoices.LOW)
