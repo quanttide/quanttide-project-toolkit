@@ -1,9 +1,10 @@
 from django_quanttide import models
 
 from .fields import ProjectTypeField, StatusField, PriorityField
+from .mixins import StatusMixin
 
 
-class BaseProject(models.Model):
+class BaseProject(models.Model, StatusMixin):
     """
     项目模型基类
     """

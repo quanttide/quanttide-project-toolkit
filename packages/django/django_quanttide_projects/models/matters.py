@@ -1,9 +1,10 @@
 from django_quanttide import models as quanttide_models
 
 from .fields import StatusField, PriorityField
+from .mixins import StatusMixin
 
 
-class BaseMatter(quanttide_models.PolymorphicModel):
+class BaseMatter(quanttide_models.PolymorphicModel, StatusMixin):
     number = quanttide_models.NumberField()
     title = quanttide_models.TitleField()
     description = quanttide_models.DescriptionField()

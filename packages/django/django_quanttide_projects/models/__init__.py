@@ -6,6 +6,9 @@ from .fields import (
     ProjectTypeField, MatterTypeField,
     PriorityField, StatusField,
 )
+from .mixins import (
+    StatusMixin
+)
 from .projects import (
     BaseProject
 )
