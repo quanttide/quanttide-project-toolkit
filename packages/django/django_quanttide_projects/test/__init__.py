@@ -1,7 +1,8 @@
-from .models import ProjectModelTestCase
+from .models import ProjectModelTestCase, MatterModelTestCase
 
 
 __all__ = [
     # TestCase classes
-    'ProjectModelTestCase'
+    'ProjectModelTestCase',
+    'MatterModelTestCase',
 ]
