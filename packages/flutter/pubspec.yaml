@@ -1,7 +1,7 @@
 name: flutter_quanttide_projects
-description: 量潮项目管理Flutter工具包
-version: 0.0.1
-homepage:
+description: 量潮项目管理Flutter工具箱
+version: 0.1.0-alpha.1
+homepage: https://github.com/quanttide/flutter-quanttide-projects
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -10,11 +10,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # 状态管理
+  state_notifier: ^1.0.0
+  flutter_state_notifier: ^1.0.0
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
+  freezed: ^2.4.2
+  json_serializable: ^6.7.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
