@@ -4,11 +4,17 @@ part 'project.freezed.dart';
 part 'project.g.dart';
 
 
-@freezed
+@unfreezed
 class Project with _$Project {
-  const factory Project({
-    required String id,
-    required String name,
+  factory Project({
+    required final String id,
+    required final String name,
+    required final DateTime createdAt,
+    required DateTime updatedAt,
+    String? verboseName,
+    String? readme,
+    @Default('drafting') String status,
+    @Default('low') String priority,
   }) = _Project;
 
   factory Project.fromJson(Map<String, dynamic> json) => _$ProjectFromJson(json);

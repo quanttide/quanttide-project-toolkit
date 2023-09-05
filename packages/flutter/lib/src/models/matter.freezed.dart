@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'project.dart';
+part of 'matter.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,21 +14,23 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Project _$ProjectFromJson(Map<String, dynamic> json) {
-  return _Project.fromJson(json);
+Matter _$MatterFromJson(Map<String, dynamic> json) {
+  return _Matter.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Project {
+mixin _$Matter {
   String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  int get number => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   set updatedAt(DateTime value) => throw _privateConstructorUsedError;
-  String? get verboseName => throw _privateConstructorUsedError;
-  set verboseName(String? value) => throw _privateConstructorUsedError;
-  String? get readme => throw _privateConstructorUsedError;
-  set readme(String? value) => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  set title(String? value) => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  set description(String? value) => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  set type(String value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
   String get priority => throw _privateConstructorUsedError;
@@ -36,29 +38,30 @@ mixin _$Project {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProjectCopyWith<Project> get copyWith => throw _privateConstructorUsedError;
+  $MatterCopyWith<Matter> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectCopyWith<$Res> {
-  factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
-      _$ProjectCopyWithImpl<$Res, Project>;
+abstract class $MatterCopyWith<$Res> {
+  factory $MatterCopyWith(Matter value, $Res Function(Matter) then) =
+      _$MatterCopyWithImpl<$Res, Matter>;
   @useResult
   $Res call(
       {String id,
-      String name,
+      int number,
       DateTime createdAt,
       DateTime updatedAt,
-      String? verboseName,
-      String? readme,
+      String? title,
+      String? description,
+      String type,
       String status,
       String priority});
 }
 
 /// @nodoc
-class _$ProjectCopyWithImpl<$Res, $Val extends Project>
-    implements $ProjectCopyWith<$Res> {
-  _$ProjectCopyWithImpl(this._value, this._then);
+class _$MatterCopyWithImpl<$Res, $Val extends Matter>
+    implements $MatterCopyWith<$Res> {
+  _$MatterCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -69,11 +72,12 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? number = null,
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? verboseName = freezed,
-    Object? readme = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? type = null,
     Object? status = null,
     Object? priority = null,
   }) {
@@ -82,10 +86,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      number: null == number
+          ? _value.number
+          : number // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -94,14 +98,18 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      verboseName: freezed == verboseName
-          ? _value.verboseName
-          : verboseName // ignore: cast_nullable_to_non_nullable
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      readme: freezed == readme
-          ? _value.readme
-          : readme // ignore: cast_nullable_to_non_nullable
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -115,51 +123,52 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
 }
 
 /// @nodoc
-abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
-  factory _$$_ProjectCopyWith(
-          _$_Project value, $Res Function(_$_Project) then) =
-      __$$_ProjectCopyWithImpl<$Res>;
+abstract class _$$_MatterCopyWith<$Res> implements $MatterCopyWith<$Res> {
+  factory _$$_MatterCopyWith(_$_Matter value, $Res Function(_$_Matter) then) =
+      __$$_MatterCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String id,
-      String name,
+      int number,
       DateTime createdAt,
       DateTime updatedAt,
-      String? verboseName,
-      String? readme,
+      String? title,
+      String? description,
+      String type,
       String status,
       String priority});
 }
 
 /// @nodoc
-class __$$_ProjectCopyWithImpl<$Res>
-    extends _$ProjectCopyWithImpl<$Res, _$_Project>
-    implements _$$_ProjectCopyWith<$Res> {
-  __$$_ProjectCopyWithImpl(_$_Project _value, $Res Function(_$_Project) _then)
+class __$$_MatterCopyWithImpl<$Res>
+    extends _$MatterCopyWithImpl<$Res, _$_Matter>
+    implements _$$_MatterCopyWith<$Res> {
+  __$$_MatterCopyWithImpl(_$_Matter _value, $Res Function(_$_Matter) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? number = null,
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? verboseName = freezed,
-    Object? readme = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? type = null,
     Object? status = null,
     Object? priority = null,
   }) {
-    return _then(_$_Project(
+    return _then(_$_Matter(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      number: null == number
+          ? _value.number
+          : number // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -168,14 +177,18 @@ class __$$_ProjectCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      verboseName: freezed == verboseName
-          ? _value.verboseName
-          : verboseName // ignore: cast_nullable_to_non_nullable
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      readme: freezed == readme
-          ? _value.readme
-          : readme // ignore: cast_nullable_to_non_nullable
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -190,32 +203,36 @@ class __$$_ProjectCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Project implements _Project {
-  _$_Project(
+class _$_Matter implements _Matter {
+  _$_Matter(
       {required this.id,
-      required this.name,
+      required this.number,
       required this.createdAt,
       required this.updatedAt,
-      this.verboseName,
-      this.readme,
+      this.title,
+      this.description,
+      this.type = 'default',
       this.status = 'drafting',
       this.priority = 'low'});
 
-  factory _$_Project.fromJson(Map<String, dynamic> json) =>
-      _$$_ProjectFromJson(json);
+  factory _$_Matter.fromJson(Map<String, dynamic> json) =>
+      _$$_MatterFromJson(json);
 
   @override
   final String id;
   @override
-  final String name;
+  final int number;
   @override
   final DateTime createdAt;
   @override
   DateTime updatedAt;
   @override
-  String? verboseName;
+  String? title;
   @override
-  String? readme;
+  String? description;
+  @override
+  @JsonKey()
+  String type;
   @override
   @JsonKey()
   String status;
@@ -225,51 +242,55 @@ class _$_Project implements _Project {
 
   @override
   String toString() {
-    return 'Project(id: $id, name: $name, createdAt: $createdAt, updatedAt: $updatedAt, verboseName: $verboseName, readme: $readme, status: $status, priority: $priority)';
+    return 'Matter(id: $id, number: $number, createdAt: $createdAt, updatedAt: $updatedAt, title: $title, description: $description, type: $type, status: $status, priority: $priority)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProjectCopyWith<_$_Project> get copyWith =>
-      __$$_ProjectCopyWithImpl<_$_Project>(this, _$identity);
+  _$$_MatterCopyWith<_$_Matter> get copyWith =>
+      __$$_MatterCopyWithImpl<_$_Matter>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProjectToJson(
+    return _$$_MatterToJson(
       this,
     );
   }
 }
 
-abstract class _Project implements Project {
-  factory _Project(
+abstract class _Matter implements Matter {
+  factory _Matter(
       {required final String id,
-      required final String name,
+      required final int number,
       required final DateTime createdAt,
       required DateTime updatedAt,
-      String? verboseName,
-      String? readme,
+      String? title,
+      String? description,
+      String type,
       String status,
-      String priority}) = _$_Project;
+      String priority}) = _$_Matter;
 
-  factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
+  factory _Matter.fromJson(Map<String, dynamic> json) = _$_Matter.fromJson;
 
   @override
   String get id;
   @override
-  String get name;
+  int get number;
   @override
   DateTime get createdAt;
   @override
   DateTime get updatedAt;
   set updatedAt(DateTime value);
   @override
-  String? get verboseName;
-  set verboseName(String? value);
+  String? get title;
+  set title(String? value);
   @override
-  String? get readme;
-  set readme(String? value);
+  String? get description;
+  set description(String? value);
+  @override
+  String get type;
+  set type(String value);
   @override
   String get status;
   set status(String value);
@@ -278,6 +299,6 @@ abstract class _Project implements Project {
   set priority(String value);
   @override
   @JsonKey(ignore: true)
-  _$$_ProjectCopyWith<_$_Project> get copyWith =>
+  _$$_MatterCopyWith<_$_Matter> get copyWith =>
       throw _privateConstructorUsedError;
 }

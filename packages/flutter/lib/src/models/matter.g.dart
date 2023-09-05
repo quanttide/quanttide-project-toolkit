@@ -1,30 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'project.dart';
+part of 'matter.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
+_$_Matter _$$_MatterFromJson(Map<String, dynamic> json) => _$_Matter(
       id: json['id'] as String,
-      name: json['name'] as String,
+      number: json['number'] as int,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
-      verboseName: json['verboseName'] as String?,
-      readme: json['readme'] as String?,
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      type: json['type'] as String? ?? 'default',
       status: json['status'] as String? ?? 'drafting',
       priority: json['priority'] as String? ?? 'low',
     );
 
-Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_MatterToJson(_$_Matter instance) => <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'number': instance.number,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
-      'verboseName': instance.verboseName,
-      'readme': instance.readme,
+      'title': instance.title,
+      'description': instance.description,
+      'type': instance.type,
       'status': instance.status,
       'priority': instance.priority,
     };

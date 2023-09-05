@@ -10,6 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # 量潮
+  flutter_quanttide:
+    git:
+      url:  https://github.com/quanttide/flutter-quanttide.git
   # 状态管理
   state_notifier: ^1.0.0
   flutter_state_notifier: ^1.0.0
