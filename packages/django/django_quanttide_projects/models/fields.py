@@ -38,13 +38,14 @@ class StatusField(models.StatusField):
         super().__init__(choices=choices, default=default, **options)
 
 
-class PriorityField(django_models.IntegerField):
+class PriorityField(django_models.CharField):
     """
     优先级字段
     """
     description = "优先级字段"
 
     def __init__(self, **options):
+        options.setdefault('max_length', 16)
         options.setdefault('choices', PriorityChoices.choices)
         options.setdefault('default', PriorityChoices.LOW)
         options.setdefault('verbose_name', '优先级')
