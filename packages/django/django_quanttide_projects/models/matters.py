@@ -23,6 +23,17 @@ class BaseMatter(quanttide_models.PolymorphicModel, StatusMixin):
         return 'default'
 
 
+class BaseAgileMatter(BaseMatter):
+    class Meta:
+        abstract = True
+        verbose_name = '敏捷事项'
+        verbose_name_plural = '敏捷事项列表'
+
+    @property
+    def type(self):
+        return 'agile'
+
+
 class BaseMillstone(BaseMatter):
     class Meta:
         abstract = True

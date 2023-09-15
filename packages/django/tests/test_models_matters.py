@@ -43,13 +43,18 @@ class PolymorphicModelTestCase(TestCase):
         """
         测试number字段。
 
-        测试结果表明，目前的事项是根据类型各自独立编号的，并且删除以后会重新生成。
+        测试结果表明：
+        1. 目前的事项是根据类型各自独立编号的。是否保留此实践还需要进一步讨论。
+        2. 并且删除以后会重新生成同一个编号，因此不建议执行删除操作。
         """
         matter = Matter.objects.create(
             title='Test Matter',
             description='Test Description',
         )
         self.assertEqual(matter.number, 1)
+        matter.delete()
+        matter2 = Matter.objects.create()
+        self.assertEqual(matter2.number, 1)
         story = Story.objects.create(
             title='Test Story',
             description='Test Description',
