@@ -11,11 +11,11 @@ _$_Matter _$$_MatterFromJson(Map<String, dynamic> json) => _$_Matter(
       number: json['number'] as int,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      type: json['type'] as String? ?? 'default',
-      status: json['status'] as String? ?? 'drafting',
+      title: json['title'] as String? ?? '',
+      description: json['description'] as String? ?? '',
       priority: json['priority'] as String? ?? 'low',
+      status: json['status'] as String? ?? 'drafting',
+      type: json['type'] as String? ?? 'default',
     );
 
 Map<String, dynamic> _$$_MatterToJson(_$_Matter instance) => <String, dynamic>{
@@ -25,7 +25,7 @@ Map<String, dynamic> _$$_MatterToJson(_$_Matter instance) => <String, dynamic>{
       'updatedAt': instance.updatedAt.toIso8601String(),
       'title': instance.title,
       'description': instance.description,
-      'type': instance.type,
-      'status': instance.status,
       'priority': instance.priority,
+      'status': instance.status,
+      'type': instance.type,
     };

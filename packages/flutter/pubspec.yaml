@@ -14,16 +14,19 @@ dependencies:
   flutter_quanttide:
     git:
       url:  https://github.com/quanttide/flutter-quanttide.git
-  # 状态管理
-  state_notifier: ^1.0.0
-  flutter_state_notifier: ^1.0.0
+  # 数据模型
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
+  # BLoC
+  equatable: ">=2.0.0"
+  bloc: ">=8.0.0"
+  flutter_bloc: ">=8.0.0"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  # 数据模型
   build_runner: ^2.4.6
   freezed: ^2.4.2
   json_serializable: ^6.7.1
@@ -33,6 +36,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  uses-material-design: true
 
   # To add assets to your package, add an assets section, like this:
   # assets:

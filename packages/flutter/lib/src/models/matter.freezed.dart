@@ -25,16 +25,16 @@ mixin _$Matter {
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   set updatedAt(DateTime value) => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
-  set title(String? value) => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  set description(String? value) => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  set type(String value) => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  set status(String value) => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  set title(String value) => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  set description(String value) => throw _privateConstructorUsedError;
   String get priority => throw _privateConstructorUsedError;
   set priority(String value) => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  set status(String value) => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  set type(String value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,11 +51,11 @@ abstract class $MatterCopyWith<$Res> {
       int number,
       DateTime createdAt,
       DateTime updatedAt,
-      String? title,
-      String? description,
-      String type,
+      String title,
+      String description,
+      String priority,
       String status,
-      String priority});
+      String type});
 }
 
 /// @nodoc
@@ -75,11 +75,11 @@ class _$MatterCopyWithImpl<$Res, $Val extends Matter>
     Object? number = null,
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? type = null,
-    Object? status = null,
+    Object? title = null,
+    Object? description = null,
     Object? priority = null,
+    Object? status = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -98,25 +98,25 @@ class _$MatterCopyWithImpl<$Res, $Val extends Matter>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      title: freezed == title
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      priority: null == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
               as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      priority: null == priority
-          ? _value.priority
-          : priority // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -133,11 +133,11 @@ abstract class _$$_MatterCopyWith<$Res> implements $MatterCopyWith<$Res> {
       int number,
       DateTime createdAt,
       DateTime updatedAt,
-      String? title,
-      String? description,
-      String type,
+      String title,
+      String description,
+      String priority,
       String status,
-      String priority});
+      String type});
 }
 
 /// @nodoc
@@ -154,11 +154,11 @@ class __$$_MatterCopyWithImpl<$Res>
     Object? number = null,
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? type = null,
-    Object? status = null,
+    Object? title = null,
+    Object? description = null,
     Object? priority = null,
+    Object? status = null,
+    Object? type = null,
   }) {
     return _then(_$_Matter(
       id: null == id
@@ -177,25 +177,25 @@ class __$$_MatterCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      title: freezed == title
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      priority: null == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
               as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      priority: null == priority
-          ? _value.priority
-          : priority // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -209,11 +209,11 @@ class _$_Matter implements _Matter {
       required this.number,
       required this.createdAt,
       required this.updatedAt,
-      this.title,
-      this.description,
-      this.type = 'default',
+      this.title = '',
+      this.description = '',
+      this.priority = 'low',
       this.status = 'drafting',
-      this.priority = 'low'});
+      this.type = 'default'});
 
   factory _$_Matter.fromJson(Map<String, dynamic> json) =>
       _$$_MatterFromJson(json);
@@ -227,22 +227,24 @@ class _$_Matter implements _Matter {
   @override
   DateTime updatedAt;
   @override
-  String? title;
-  @override
-  String? description;
+  @JsonKey()
+  String title;
   @override
   @JsonKey()
-  String type;
+  String description;
+  @override
+  @JsonKey()
+  String priority;
   @override
   @JsonKey()
   String status;
   @override
   @JsonKey()
-  String priority;
+  String type;
 
   @override
   String toString() {
-    return 'Matter(id: $id, number: $number, createdAt: $createdAt, updatedAt: $updatedAt, title: $title, description: $description, type: $type, status: $status, priority: $priority)';
+    return 'Matter(id: $id, number: $number, createdAt: $createdAt, updatedAt: $updatedAt, title: $title, description: $description, priority: $priority, status: $status, type: $type)';
   }
 
   @JsonKey(ignore: true)
@@ -265,11 +267,11 @@ abstract class _Matter implements Matter {
       required final int number,
       required final DateTime createdAt,
       required DateTime updatedAt,
-      String? title,
-      String? description,
-      String type,
+      String title,
+      String description,
+      String priority,
       String status,
-      String priority}) = _$_Matter;
+      String type}) = _$_Matter;
 
   factory _Matter.fromJson(Map<String, dynamic> json) = _$_Matter.fromJson;
 
@@ -283,20 +285,20 @@ abstract class _Matter implements Matter {
   DateTime get updatedAt;
   set updatedAt(DateTime value);
   @override
-  String? get title;
-  set title(String? value);
+  String get title;
+  set title(String value);
   @override
-  String? get description;
-  set description(String? value);
+  String get description;
+  set description(String value);
   @override
-  String get type;
-  set type(String value);
+  String get priority;
+  set priority(String value);
   @override
   String get status;
   set status(String value);
   @override
-  String get priority;
-  set priority(String value);
+  String get type;
+  set type(String value);
   @override
   @JsonKey(ignore: true)
   _$$_MatterCopyWith<_$_Matter> get copyWith =>
