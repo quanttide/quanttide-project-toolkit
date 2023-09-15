@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class DjangoPackageConfig(AppConfig):
-    name = 'django_quanttide'
+    name = 'django_quanttide_projects'
