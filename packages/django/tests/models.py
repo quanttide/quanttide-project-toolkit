@@ -1,4 +1,7 @@
-from django_quanttide_projects.models import BaseProject, BaseMatter, BaseTask
+from django_quanttide_projects.models import (
+    BaseProject,
+    BaseMatter, BaseStory, BaseTask
+)
 
 
 class Project(BaseProject):
@@ -6,6 +9,10 @@ class Project(BaseProject):
 
 
 class Matter(BaseMatter):
+    pass
+
+
+class Story(BaseStory):
     pass
 
 
