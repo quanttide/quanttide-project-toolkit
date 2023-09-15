@@ -50,7 +50,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "ra.urls"
+ROOT_URLCONF = "qtresearch_ra.urls"
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "ra.wsgi.application"
+WSGI_APPLICATION = "qtresearch_ra.wsgi.application"
 
 
 # Database
