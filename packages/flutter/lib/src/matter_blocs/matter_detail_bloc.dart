@@ -1,18 +1,18 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_quanttide_projects/src/api.dart';
-import 'package:flutter_quanttide_projects/src/events/matter_events.dart';
-import 'package:flutter_quanttide_projects/src/api_client.dart';
 
+import '../api.dart';
+import '../models/matter.dart';
 import '../events/matter_events.dart';
 import 'matter_detail_state.dart';
 
-class MatterDetailBloc extends Bloc<MatterEvent, Matter> {
-  final ApiService apiService;
 
-  MatterDetailBloc(this.apiService) : super(Matter.initial());
 
-  @override
+class MatterDetailBloc extends Bloc<MatterEvent, MatterDetailState> {
+  final ProjectsAPIClient apiClient;
+
+  MatterDetailBloc(this.apiClient) : super(const MatterDetailState());
+
   Stream<Matter> mapEventToState(MatterEvent event) async* {
     if (event is MatterRetrieved) {
       // Handle matter detail retrieval
@@ -30,12 +30,4 @@ class MatterDetailBloc extends Bloc<MatterEvent, Matter> {
       // Handle matter deletion
     }
   }
-}
-
-mixin ProjectsAPIMixin on APIClient {
-  // Methods for getting project and matter lists
-}
-
-class ProjectsAPIClient extends APIClient with ProjectsAPIMixin {
-  ProjectsAPIClient({required super.apiRoot});
 }
