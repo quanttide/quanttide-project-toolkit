@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-quanttide-projects"
-version = "0.1.0-rc.6"
+version = "0.1.0"
 description = "量潮项目管理Django工具箱"
 authors = ["QuantTide Inc. <opensource@quanttide.com>"]
 license = "Apache 2.0"
