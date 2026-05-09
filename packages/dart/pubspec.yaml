@@ -1,5 +1,5 @@
 name: quanttide_project
-description: 量潮看板项目领域模型
+description: 量潮项目管理Dart SDK
 version: 0.1.0
 
 environment:
