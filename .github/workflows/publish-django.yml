@@ -10,11 +10,11 @@ jobs:
         working-directory: packages/django
     steps:
       - name: checkout
-        uses: actions/checkout@v3
-      - name: set up Python3.9
-        uses: actions/setup-python@v1
+        uses: actions/checkout@v4
+      - name: set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: "3.12"
       - name: install pypa/build
         run: python -m pip install build --user
       - name: build
