@@ -1,6 +1,6 @@
-# flutter-quanttide-project
+# quanttide_project
 
-看板项目领域模型。为 `quanttide-project-toolkit` 的 Flutter 实现奠定基础。
+看板项目领域模型。
 
 ## 模型
 
@@ -16,7 +16,7 @@
 ## 使用
 
 ```dart
-import 'package:flutter_quanttide_project/flutter_quanttide_project.dart';
+import 'package:quanttide_project/quanttide_project.dart';
 
 final project = Project(
   name: 'project1',
@@ -31,14 +31,4 @@ final project = Project(
 
 final json = project.toJson();
 final restored = Project.fromJson(json);
-```
-
-## 依赖关系
-
-```
-flutter-quanttide-project  (通用看板模型)
-        ↑
-qtconsult-project          (OODA 特化适配，studio 内部)
-        ↑
-qtconsult_studio           (主应用)
 ```
