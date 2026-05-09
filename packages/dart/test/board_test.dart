@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:flutter_quanttide_project/flutter_quanttide_project.dart';
+import 'package:quanttide_project/quanttide_project.dart';
 
 void main() {
   group('Board / BoardList / Project round trip', () {
