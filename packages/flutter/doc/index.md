@@ -12,18 +12,16 @@ BoardView(list: List<Task>)
 
 ## 看板列`BoardColumn`
 
-看板列，对应 `BoardList`。
+通用外壳组件，提供白底圆角容器 + 标题栏 + 内容插槽。
 
 ```dart
-BoardColumn(list: List<Task>)
+BoardColumn(title: Widget, content: Widget)
 ```
-
-渲染列标题（`BoardList.name`）和卡片列表（`BoardList.cards`）。每张卡片由 `BoardCard` 渲染。
 
 ## 看板卡片`BoardCard`
 
-```dart
-BoardCard(task: Task)
-```
+通用卡片外壳，提供 Card + InkWell + padding。
 
-渲染任务标题、状态、负责人等关键字段。
+```dart
+BoardCard(content: Widget, onTap: VoidCallback?)
+```
