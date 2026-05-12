@@ -25,7 +25,7 @@ class BoardView extends StatelessWidget {
   }
 
   Widget _buildDesktop(BoxConstraints constraints) {
-    final gap = 14.0;
+    const gap = 14.0;
     final paddedWidth = constraints.maxWidth - 32;
     final totalGaps = (columns.length - 1) * gap;
     final totalFlex = columns.fold(0.0, (a, c) => a + c.flex);
@@ -40,7 +40,9 @@ class BoardView extends StatelessWidget {
             children: [
               for (int i = 0; i < columns.length; i++) ...[
                 if (i > 0) const SizedBox(width: 14),
-                SizedBox(width: unitWidth * columns[i].flex, child: columns[i].child),
+                SizedBox(
+                    width: unitWidth * columns[i].flex,
+                    child: columns[i].child),
               ],
             ],
           ),
