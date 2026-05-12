@@ -34,7 +34,7 @@ void main() {
       expect(tasks.where((t) => t.type == 'act').length, 6);
     });
 
-    test('observe tasks have category, source, and confirmed status', () {
+    test('observe tasks have observe_type, source, confirmed status, and category', () {
       final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
       final observe = (raw['tasks'] as List)
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
@@ -43,9 +43,10 @@ void main() {
 
       expect(observe.length, 6);
       for (final t in observe) {
-        expect(['ideal', 'reality'], contains(t.category));
+        expect(['ideal', 'reality'], contains(t.tags['observe_type']));
         expect(t.tags['source'], isNotNull);
         expect(t.status, 'confirmed');
+        expect(t.category, isNotNull);
       }
     });
 
@@ -122,6 +123,17 @@ void main() {
 
       for (final t in tasks) {
         expect(t.tags.containsKey('upstream'), isFalse);
+      }
+    });
+
+    test('all tasks have non-null category', () {
+      final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
+      final tasks = (raw['tasks'] as List)
+          .map((e) => Task.fromJson(e as Map<String, dynamic>))
+          .toList();
+
+      for (final t in tasks) {
+        expect(t.category, isNotNull);
       }
     });
   });
@@ -206,6 +218,17 @@ void main() {
 
       for (final t in tasks) {
         expect(t.tags.containsKey('upstream'), isFalse);
+      }
+    });
+
+    test('all tasks have non-null category', () {
+      final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
+      final tasks = (raw['tasks'] as List)
+          .map((e) => Task.fromJson(e as Map<String, dynamic>))
+          .toList();
+
+      for (final t in tasks) {
+        expect(t.category, isNotNull);
       }
     });
   });

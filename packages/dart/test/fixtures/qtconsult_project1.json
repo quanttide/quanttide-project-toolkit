@@ -8,78 +8,79 @@
       "title": "战略转型 · 商家赋能",
       "description": "从\"做大平台订单\"转向\"帮商家拉流量、提营收\"，需要新平台和数据分析能力支撑。",
       "type": "observe",
-      "category": "ideal",
+      "category": "战略",
       "status": "pending",
-      "tags": {"source": "访谈"}
+      "tags": {"observe_type": "ideal", "source": "访谈"}
     },
     {
       "id": "8618e473-ebe2-484f-88b3-e91eb8c289db",
       "title": "新平台研发 · 商家赋能平台",
       "description": "从零研发商家平台，含入驻、流量投放、数据分析、效果追踪。要求6个月出MVP。",
       "type": "observe",
-      "category": "ideal",
+      "category": "产品技术",
       "status": "pending",
-      "tags": {"source": "访谈"}
+      "tags": {"observe_type": "ideal", "source": "访谈"}
     },
     {
       "id": "aea11ad3-1f7a-4d84-9ce3-2db75ba6b55c",
       "title": "数据分析 · 复杂多维",
       "description": "需要商家分析、市场调控、平台运营三大维度的交叉分析能力。",
       "type": "observe",
-      "category": "ideal",
+      "category": "数据",
       "status": "pending",
-      "tags": {"source": "访谈"}
+      "tags": {"observe_type": "ideal", "source": "访谈"}
     },
     {
       "id": "48b0823c-bec3-404f-afa7-8f3d34deb950",
       "title": "技术升级 · 平台能力建设",
       "description": "当前技术水平和团队配置不足以支撑新平台研发，需系统性提升。",
       "type": "observe",
-      "category": "ideal",
+      "category": "技术基建",
       "status": "pending",
-      "tags": {"source": "评估"}
+      "tags": {"observe_type": "ideal", "source": "评估"}
     },
     {
       "id": "31ff8e85-b8f3-495d-b3a9-e8c3e532de7e",
       "title": "技术债务",
       "description": "代码测试覆盖不足、CI/CD缺失、模块耦合度高，部分精力消耗在历史遗留问题上。",
       "type": "observe",
-      "category": "reality",
+      "category": "技术债",
       "status": "confirmed",
-      "tags": {"source": "代码审计"}
+      "tags": {"observe_type": "reality", "source": "代码审计"}
     },
     {
       "id": "15242a21-27e5-49c4-aa82-085bc378d477",
       "title": "技术团队能力",
       "description": "团队缺乏架构设计、数据工程、DevOps经验，同时支撑三大任务存在挑战。",
       "type": "observe",
-      "category": "reality",
+      "category": "团队",
       "status": "confirmed",
-      "tags": {"source": "评估"}
+      "tags": {"observe_type": "reality", "source": "评估"}
     },
     {
       "id": "50c52803-47b6-4f0e-bda1-f79bfe19af3c",
       "title": "数据分析能力",
       "description": "无分析工具和专职团队，经营数据靠人工Excel汇总。所需分析能力需从零建设。",
       "type": "observe",
-      "category": "reality",
+      "category": "数据",
       "status": "confirmed",
-      "tags": {"source": "调研"}
+      "tags": {"observe_type": "reality", "source": "调研"}
     },
     {
       "id": "fc3bd447-e182-45d5-944c-dc3a6a34d6a7",
       "title": "数据基础设施",
       "description": "无数仓、无统一数据平台，数据散落各系统。数据汇聚和清洗需从头搭建。",
       "type": "observe",
-      "category": "reality",
+      "category": "数据基建",
       "status": "confirmed",
-      "tags": {"source": "评估"}
+      "tags": {"observe_type": "reality", "source": "评估"}
     },
     {
       "id": "e9ab0979-83d5-4112-ba25-6f54390be8b4",
       "title": "战略目标与技术承载能力之间存在差距",
       "description": "过往技术投入以支撑运行为主，未为下一阶段做储备，导致三大任务需协调推进，避免资源分散。",
       "type": "orient",
+      "category": "战略技术断层",
       "tags": {
         "rootCause": "过往技术投入以支撑运行为主，未为下一阶段做储备。",
         "impact": "三大任务需协调推进，避免资源分散。",
@@ -91,6 +92,7 @@
       "title": "架构优化前置有助于新平台建设",
       "description": "现有代码和架构有优化空间，技术债需在新建前处理，否则将旧问题延拓到新系统。",
       "type": "orient",
+      "category": "战略技术断层",
       "tags": {
         "rootCause": "现有代码和架构有优化空间，技术债需在新建前处理。",
         "impact": "不清债直接建新平台，可能将旧问题延拓到新系统。",
@@ -102,6 +104,7 @@
       "title": "数据分析需求日趋复杂，数据基础有待夯实",
       "description": "多维分析需求涌现，但数据采集和存储能力尚在建设中，需分阶段建设。",
       "type": "orient",
+      "category": "数据基建",
       "tags": {
         "rootCause": "多维分析需求涌现，但数据采集和存储能力尚在建设中。",
         "impact": "需分阶段建设，优先聚焦商家ROI和流量效果评估。",
@@ -113,6 +116,7 @@
       "title": "新平台与数据基础设施需统筹规划",
       "description": "新平台数据架构若独立规划，未来可能形成新数据孤岛，应从设计阶段考虑数据规范。",
       "type": "orient",
+      "category": "数据基建",
       "tags": {
         "rootCause": "新平台数据架构若独立规划，未来可能形成新数据孤岛。",
         "impact": "应从设计阶段就考虑数据规范和数据上报机制。",
@@ -124,6 +128,7 @@
       "title": "方案A：\"先筑基、再建房\"三阶段推进",
       "description": "先夯实技术基础，降低后期治理成本。",
       "type": "decide",
+      "category": "战略",
       "priority": "P1",
       "tags": {
         "advantage": "先夯实技术基础，降低后期治理成本。",
@@ -139,6 +144,7 @@
       "title": "方案B：新平台快速上马，技术优化并行推进",
       "description": "新平台快速上线验证方向，抢占窗口期。",
       "type": "decide",
+      "category": "战略",
       "priority": "P2",
       "tags": {
         "advantage": "新平台快速上线验证方向，抢占窗口期。",
@@ -154,6 +160,7 @@
       "title": "架构优化与工程规范建设",
       "description": "",
       "type": "act",
+      "category": "技术基建",
       "status": "doing",
       "assignee": "架构组",
       "startAt": "2026-06-01",
@@ -168,6 +175,7 @@
       "title": "团队扩充",
       "description": "",
       "type": "act",
+      "category": "组织",
       "status": "doing",
       "assignee": "HR + CTO",
       "startAt": "2026-06-01",
@@ -182,6 +190,7 @@
       "title": "商家赋能平台MVP研发",
       "description": "",
       "type": "act",
+      "category": "产品技术",
       "status": "todo",
       "assignee": "待定",
       "startAt": "2026-10-01",
@@ -193,6 +202,7 @@
       "title": "数据仓库与BI体系建设",
       "description": "",
       "type": "act",
+      "category": "数据基建",
       "status": "todo",
       "assignee": "待定（需数据工程师到岗）",
       "startAt": "2026-10-01",
@@ -204,6 +214,7 @@
       "title": "原有系统日常维护",
       "description": "高峰期保障、日常修复、外包协调",
       "type": "act",
+      "category": "运维",
       "status": "doing",
       "assignee": "现有团队",
       "tags": {"progress": "1.0"}
@@ -213,6 +224,7 @@
       "title": "数据治理与数据规范制定",
       "description": "",
       "type": "act",
+      "category": "数据基建",
       "status": "blocked",
       "assignee": "数据工程师（待招）",
       "tags": {

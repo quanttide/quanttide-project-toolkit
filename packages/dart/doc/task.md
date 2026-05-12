@@ -6,9 +6,9 @@
 - 描述`description`(`String`): 描述，默认 `''`。
 
 分类
-- 类型`type`(`String?`): 系统维护的互斥分类。
-- 类别`category`(`String?`): 人类或 AI 维护的互斥分类。
-- 标签`tags`(`Map<String, String>`): 非互斥的多维度标记，默认 `{}`。
+- 类型`type`(`String?`): 需要系统逻辑约束的分类，比如OODA循环、CODE循环等。
+- 类别`category`(`String?`): 人类或 AI 维护的互斥分类，表达业务问题域（如"销售"、"技术基建"、"组织"）。
+- 标签`tags`(`Map<String, String>`): 非互斥的多维度标记，表达各阶段特有的业务元数据（如 observe_type、source、rootCause、domain、progress），默认 `{}`。
 
 状态
 - 状态`status`(`String?`): 状态。
