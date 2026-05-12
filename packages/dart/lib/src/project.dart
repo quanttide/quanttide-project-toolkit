@@ -1,41 +1,62 @@
-import 'board.dart';
-
-/// 项目。持有一个 [Board] 作为其看板数据。
 class Project {
-  /// 项目标识名。
+  // ===== 标识 =====
+  final String id;
   final String name;
-
-  /// 项目显示标题。
   final String title;
+  final String description;
 
-  // ===== 看板 =====
-
-  /// 项目的看板数据，包含一组具名列表。
-  ///
-  /// 注意：[Board] 已标记废弃，后续版本将替换为直接管理 [Task] 集合。
-  final Board board;
+  // ===== 审计 =====
+  final String? createdBy;
+  final DateTime? createdAt;
+  final String? updatedBy;
+  final DateTime? updatedAt;
 
   const Project({
+    required this.id,
     required this.name,
     required this.title,
-    required this.board,
+    this.description = '',
+    this.createdBy,
+    this.createdAt,
+    this.updatedBy,
+    this.updatedAt,
   });
 
-  /// 从 JSON Map 构造。
   factory Project.fromJson(Map<String, dynamic> json) {
+    DateTime? parseDateTime(String key) {
+      final v = json[key];
+      if (v == null) return null;
+      if (v is DateTime) return v;
+      if (v is String) return DateTime.tryParse(v);
+      return null;
+    }
+
     return Project(
+      id: json['id'] as String,
       name: json['name'] as String,
       title: json['title'] as String,
-      board: Board.fromJson(json['board'] as Map<String, dynamic>),
+      description: json['description'] as String? ?? '',
+      createdBy: json['createdBy'] as String?,
+      createdAt: parseDateTime('createdAt'),
+      updatedBy: json['updatedBy'] as String?,
+      updatedAt: parseDateTime('updatedAt'),
     );
   }
 
-  /// 序列化为 JSON Map。
   Map<String, dynamic> toJson() {
-    return {
+    String? formatDateTime(DateTime? dt) =>
+        dt?.toIso8601String();
+
+    final map = <String, dynamic>{
+      'id': id,
       'name': name,
       'title': title,
-      'board': board.toJson(),
+      'description': description,
     };
+    if (createdBy != null) map['createdBy'] = createdBy;
+    if (createdAt != null) map['createdAt'] = formatDateTime(createdAt);
+    if (updatedBy != null) map['updatedBy'] = updatedBy;
+    if (updatedAt != null) map['updatedAt'] = formatDateTime(updatedAt);
+    return map;
   }
 }
