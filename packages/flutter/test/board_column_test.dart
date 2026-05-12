@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_quanttide_projects/flutter_quanttide_projects.dart';
 
 void main() {
-  testWidgets('BoardColumn 渲染标题和内容', (tester) async {
+  testWidgets('渲染标题和内容', (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: BoardColumn(
@@ -18,7 +18,7 @@ void main() {
     expect(find.text('内容区域'), findsOneWidget);
   });
 
-  testWidgets('BoardColumn 标题栏有分割线', (tester) async {
+  testWidgets('标题栏有分割线', (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: SizedBox(
@@ -36,7 +36,7 @@ void main() {
     expect(decoration.borderRadius, BorderRadius.circular(10));
   });
 
-  testWidgets('BoardColumn 内容区填充剩余空间', (tester) async {
+  testWidgets('内容区填充剩余空间', (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: SizedBox(
@@ -50,24 +50,5 @@ void main() {
     ));
 
     expect(find.text('填充内容'), findsOneWidget);
-  });
-
-  testWidgets('BoardView 渲染多列', (tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        body: SizedBox(
-          height: 500,
-          child: BoardView(lists: {
-            '待办': [],
-            '进行中': [],
-            '完成': [],
-          }),
-        ),
-      ),
-    ));
-
-    expect(find.text('待办'), findsOneWidget);
-    expect(find.text('进行中'), findsOneWidget);
-    expect(find.text('完成'), findsOneWidget);
   });
 }
