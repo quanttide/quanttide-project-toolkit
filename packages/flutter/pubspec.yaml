@@ -11,16 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
   # 量潮
+  quanttide_project:
+    path: ../dart
   flutter_quanttide:
     git:
       url:  https://github.com/quanttide/flutter-quanttide.git
-  # 数据模型
-  freezed_annotation: ^2.4.1
-  json_annotation: ^4.8.1
-  # BLoC
-  equatable: ">=2.0.0"
-  bloc: ">=8.0.0"
-  flutter_bloc: ">=8.0.0"
 
 dev_dependencies:
   flutter_test:
