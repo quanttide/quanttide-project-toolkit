@@ -11,6 +11,8 @@ class Project {
   // ===== 看板 =====
 
   /// 项目的看板数据，包含一组具名列表。
+  ///
+  /// 注意：[Board] 已标记废弃，后续版本将替换为直接管理 [Task] 集合。
   final Board board;
 
   const Project({
