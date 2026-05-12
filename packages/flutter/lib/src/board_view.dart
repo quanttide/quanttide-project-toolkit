@@ -23,10 +23,10 @@ class BoardView extends StatelessWidget {
             content: ListView.builder(
               itemCount: entry.value.length,
               itemBuilder: (context, i) => BoardCard(
-                content: Column(
+                title: Text(entry.value[i].title, style: Theme.of(context).textTheme.titleSmall),
+                description: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(entry.value[i].title, style: Theme.of(context).textTheme.titleSmall),
                     if (entry.value[i].assignee != null)
                       Text('负责人: ${entry.value[i].assignee}',
                           style: Theme.of(context).textTheme.bodySmall),
