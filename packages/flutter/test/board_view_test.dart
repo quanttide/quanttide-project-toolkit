@@ -9,12 +9,11 @@ void main() {
         body: SizedBox(
           height: 500,
           child: BoardView(
-            columns: [
-              const Text('列A'),
-              const Text('列B'),
-              const Text('列C'),
+            columns: const [
+              (child: Text('列A'), flex: 1.0),
+              (child: Text('列B'), flex: 2.0),
+              (child: Text('列C'), flex: 1.0),
             ],
-            flexes: [1.0, 2.0, 1.0],
           ),
         ),
       ),
@@ -32,10 +31,9 @@ void main() {
           height: 500,
           child: BoardView(
             header: const Text('看板标题'),
-            columns: [
-              const Text('列A'),
+            columns: const [
+              (child: Text('列A'), flex: 1.0),
             ],
-            flexes: [1.0],
           ),
         ),
       ),
