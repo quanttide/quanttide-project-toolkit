@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_quanttide_projects/flutter_quanttide_projects.dart';
+import 'package:flutter_quanttide_project/flutter_quanttide_project.dart';
 
 void main() {
   testWidgets('渲染多列按照 flex 比例', (tester) async {
