@@ -1,29 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:quanttide_project/quanttide_project.dart';
-import 'board_card.dart';
 
 class BoardColumn extends StatelessWidget {
-  final String title;
-  final List<Task> tasks;
+  final Widget title;
+  final Widget content;
 
-  const BoardColumn({super.key, required this.title, required this.tasks});
+  const BoardColumn({
+    super.key,
+    required this.title,
+    required this.content,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8),
-          child: Text(title, style: Theme.of(context).textTheme.titleMedium),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: tasks.length,
-            itemBuilder: (context, index) => BoardCard(task: tasks[index]),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(10),
+            blurRadius: 3,
+            offset: const Offset(0, 1),
           ),
-        ),
-      ],
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.fromLTRB(18, 14, 18, 10),
+            decoration: const BoxDecoration(
+              border: Border(bottom: BorderSide(color: Color(0xFFE6E6E6))),
+            ),
+            child: title,
+          ),
+          Expanded(child: content),
+        ],
+      ),
     );
   }
 }

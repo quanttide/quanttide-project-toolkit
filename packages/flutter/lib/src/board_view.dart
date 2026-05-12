@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quanttide_project/quanttide_project.dart';
+import 'board_card.dart';
 import 'board_column.dart';
 
 class BoardView extends StatelessWidget {
@@ -16,7 +17,14 @@ class BoardView extends StatelessWidget {
         final entry = lists.entries.elementAt(index);
         return SizedBox(
           width: 280,
-          child: BoardColumn(title: entry.key, tasks: entry.value),
+          child: BoardColumn(
+            title: Text(entry.key,
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Color(0xFF1A1A1A))),
+            content: ListView.builder(
+              itemCount: entry.value.length,
+              itemBuilder: (context, i) => BoardCard(task: entry.value[i]),
+            ),
+          ),
         );
       },
     );
