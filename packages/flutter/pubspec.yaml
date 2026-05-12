@@ -1,6 +1,6 @@
 name: flutter_quanttide_projects
 description: 量潮项目管理Flutter工具箱
-version: 0.1.0-alpha.1
+version: 0.1.0
 homepage: https://github.com/quanttide/flutter-quanttide-projects
 
 environment:
@@ -10,12 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # 量潮
-  quanttide_project:
-    path: ../dart
-  flutter_quanttide:
-    git:
-      url:  https://github.com/quanttide/flutter-quanttide.git
 
 dev_dependencies:
   flutter_test:
