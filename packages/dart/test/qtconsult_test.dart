@@ -28,26 +28,28 @@ void main() {
           .toList();
 
       expect(tasks.length, 18);
-      expect(tasks.where((t) => t.type == 'observe').length, 6);
+      expect(tasks.where((t) => t.type == 'observe-ideal' || t.type == 'observe-reality').length, 6);
       expect(tasks.where((t) => t.type == 'orient').length, 4);
       expect(tasks.where((t) => t.type == 'decide').length, 2);
       expect(tasks.where((t) => t.type == 'act').length, 6);
     });
 
-    test('observe tasks have observe_type, source, confirmed status, and category', () {
+    test('observe tasks have observe type, source, confirmed status, and category', () {
       final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
       final observe = (raw['tasks'] as List)
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
-          .where((t) => t.type == 'observe')
+          .where((t) => t.type == 'observe-ideal' || t.type == 'observe-reality')
           .toList();
 
       expect(observe.length, 6);
       for (final t in observe) {
-        expect(['ideal', 'reality'], contains(t.tags['observe_type']));
+        expect(['observe-ideal', 'observe-reality'], contains(t.type));
         expect(t.tags['source'], isNotNull);
         expect(t.status, 'confirmed');
         expect(t.category, isNotNull);
       }
+      expect(observe.where((t) => t.type == 'observe-ideal').length, 2);
+      expect(observe.where((t) => t.type == 'observe-reality').length, 4);
     });
 
     test('orient tasks have rootCause, impact, domain', () {
@@ -161,7 +163,7 @@ void main() {
           .toList();
 
       expect(tasks.length, 20);
-      expect(tasks.where((t) => t.type == 'observe').length, 8);
+      expect(tasks.where((t) => t.type == 'observe-ideal' || t.type == 'observe-reality').length, 8);
       expect(tasks.where((t) => t.type == 'orient').length, 4);
       expect(tasks.where((t) => t.type == 'decide').length, 2);
       expect(tasks.where((t) => t.type == 'act').length, 6);
@@ -171,7 +173,7 @@ void main() {
       final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
       final observe = (raw['tasks'] as List)
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
-          .where((t) => t.type == 'observe')
+          .where((t) => t.type == 'observe-ideal' || t.type == 'observe-reality')
           .toList();
 
       expect(observe.where((t) => t.status == 'pending').length, 4);
