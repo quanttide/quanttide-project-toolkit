@@ -1,0 +1,15 @@
+name: publish-flutter
+on:
+  release:
+    types: [published]
+jobs:
+  publishing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: k-paxian/dart-package-publisher@master
+        with:
+          credentialJson: ${{ secrets.PUBDEV_CREDENTIAL_JSON }}
+          relativePath: packages/flutter
+          force: true
+          flutter: true
