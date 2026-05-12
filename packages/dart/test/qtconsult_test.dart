@@ -28,40 +28,52 @@ void main() {
           .toList();
 
       expect(tasks.length, 18);
-      expect(tasks.where((t) => t.type == 'observe-ideal' || t.type == 'observe-reality').length, 6);
-      expect(tasks.where((t) => t.type == 'orient').length, 4);
+      expect(tasks.where((t) => t.type == 'clarify').length, 2);
+      expect(tasks.where((t) => t.type == 'research').length, 8);
       expect(tasks.where((t) => t.type == 'decide').length, 2);
-      expect(tasks.where((t) => t.type == 'act').length, 6);
+      expect(tasks.where((t) => t.type == 'execute').length, 6);
     });
 
-    test('observe tasks have observe type, source, confirmed status, and category', () {
+    test('clarify tasks have source, confirmed status, and category', () {
       final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
-      final observe = (raw['tasks'] as List)
+      final tasks = (raw['tasks'] as List)
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
-          .where((t) => t.type == 'observe-ideal' || t.type == 'observe-reality')
+          .where((t) => t.type == 'clarify')
           .toList();
 
-      expect(observe.length, 6);
-      for (final t in observe) {
-        expect(['observe-ideal', 'observe-reality'], contains(t.type));
+      expect(tasks.length, 2);
+      for (final t in tasks) {
         expect(t.tags['source'], isNotNull);
         expect(t.status, 'confirmed');
         expect(t.category, isNotNull);
       }
-      expect(observe.where((t) => t.type == 'observe-ideal').length, 2);
-      expect(observe.where((t) => t.type == 'observe-reality').length, 4);
     });
 
-    test('orient tasks have rootCause, impact, domain', () {
+    test('research tasks have source, rootCause, impact, domain', () {
       final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
-      final orient = (raw['tasks'] as List)
+      final research = (raw['tasks'] as List)
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
-          .where((t) => t.type == 'orient')
+          .where((t) => t.type == 'research')
           .toList();
 
-      expect(orient.length, 4);
-      for (final t in orient) {
-        expect(t.tags['rootCause'], isNotEmpty);
+      expect(research.length, 8);
+      final withSource = research.where((t) => t.tags['source'] != null).toList();
+      expect(withSource.length, 4);
+      final withInsight = research.where((t) => t.tags['rootCause'] != null).toList();
+      expect(withInsight.length, 4);
+    });
+
+    test('research tasks have rootCause, impact, domain for orient-originated items', () {
+      final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
+      final research = (raw['tasks'] as List)
+          .map((e) => Task.fromJson(e as Map<String, dynamic>))
+          .where((t) => t.type == 'research')
+          .toList();
+
+      expect(research.length, 8);
+      final withInsight = research.where((t) => t.tags['rootCause'] != null).toList();
+      expect(withInsight.length, 4);
+      for (final t in withInsight) {
         expect(t.tags['impact'], isNotEmpty);
         expect(t.tags['domain'], isNotEmpty);
       }
@@ -86,15 +98,15 @@ void main() {
       }
     });
 
-    test('act tasks have status, assignee, dates, and progress', () {
+    test('execute tasks have status, assignee, dates, and progress', () {
       final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
-      final act = (raw['tasks'] as List)
+      final execute = (raw['tasks'] as List)
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
-          .where((t) => t.type == 'act')
+          .where((t) => t.type == 'execute')
           .toList();
 
-      expect(act.length, 6);
-      for (final t in act) {
+      expect(execute.length, 6);
+      for (final t in execute) {
         expect(t.assignee, isNotNull);
         expect(t.startAt, isNotNull);
         expect(t.endAt, isNotNull);
@@ -163,38 +175,42 @@ void main() {
           .toList();
 
       expect(tasks.length, 20);
-      expect(tasks.where((t) => t.type == 'observe-ideal' || t.type == 'observe-reality').length, 8);
-      expect(tasks.where((t) => t.type == 'orient').length, 4);
+      expect(tasks.where((t) => t.type == 'clarify').length, 4);
+      expect(tasks.where((t) => t.type == 'research').length, 8);
       expect(tasks.where((t) => t.type == 'decide').length, 2);
-      expect(tasks.where((t) => t.type == 'act').length, 6);
+      expect(tasks.where((t) => t.type == 'execute').length, 6);
     });
 
-    test('observe tasks have correct status (pending vs confirmed)', () {
+    test('clarify and research tasks have correct status (pending vs confirmed)', () {
       final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
-      final observe = (raw['tasks'] as List)
+      final clarify = (raw['tasks'] as List)
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
-          .where((t) => t.type == 'observe-ideal' || t.type == 'observe-reality')
+          .where((t) => t.type == 'clarify')
+          .toList();
+      final research = (raw['tasks'] as List)
+          .map((e) => Task.fromJson(e as Map<String, dynamic>))
+          .where((t) => t.type == 'research')
           .toList();
 
-      expect(observe.where((t) => t.status == 'pending').length, 4);
-      expect(observe.where((t) => t.status == 'confirmed').length, 4);
+      expect(clarify.where((t) => t.status == 'pending').length, 4);
+      expect(research.where((t) => t.status == 'confirmed').length, 4);
     });
 
-    test('act tasks handle missing dates and blocked status', () {
+    test('execute tasks handle missing dates and blocked status', () {
       final raw = jsonDecode(fixture.readAsStringSync()) as Map<String, dynamic>;
-      final act = (raw['tasks'] as List)
+      final execute = (raw['tasks'] as List)
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
-          .where((t) => t.type == 'act')
+          .where((t) => t.type == 'execute')
           .toList();
 
-      expect(act.where((t) => t.status == 'doing').length, 3);
-      expect(act.where((t) => t.status == 'todo').length, 2);
-      expect(act.where((t) => t.status == 'blocked').length, 1);
+      expect(execute.where((t) => t.status == 'doing').length, 3);
+      expect(execute.where((t) => t.status == 'todo').length, 2);
+      expect(execute.where((t) => t.status == 'blocked').length, 1);
 
-      final withoutDates = act.where((t) => t.startAt == null).toList();
+      final withoutDates = execute.where((t) => t.startAt == null).toList();
       expect(withoutDates.length, 2);
 
-      final blocked = act.firstWhere((t) => t.tags['blockedReason'] != null);
+      final blocked = execute.firstWhere((t) => t.tags['blockedReason'] != null);
       expect(blocked.tags['blockedReason'], '数据工程师未到岗，无法启动');
     });
 
