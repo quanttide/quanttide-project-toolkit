@@ -1,34 +1,26 @@
 # quanttide_project
 
-看板项目领域模型。
+项目管理领域模型。
 
 ## 模型
 
 | 类 | 说明 |
 |---|---|
-| `BoardCard` | 看板卡片，支持内置字段 + 自定义字段 |
-| `BoardList` | 具名卡片列表 |
-| `Board` | 看板，包含 `Map<String, BoardList>` |
-| `Project` | 项目，持有一个 `Board` |
-
-不包含任何业务特化逻辑（如 OODA），仅提供通用的看板数据结构。
+| `Project` | 项目，包含标识信息和审计字段 |
+| `Task` | 任务，含分类、状态、计划、审计等字段 |
 
 ## 使用
 
 ```dart
 import 'package:quanttide_project/quanttide_project.dart';
 
-final project = Project(
-  name: 'project1',
-  title: '示例项目',
-  board: Board(lists: {
-    'todo': BoardList(name: 'todo', cards: [
-      BoardCard(id: 'c1', title: '任务1'),
-    ]),
-    'done': BoardList(name: 'done', cards: []),
-  }),
+final task = Task(
+  id: 't1',
+  title: '完成报告',
+  status: 'pending',
+  assignee: '张三',
 );
 
-final json = project.toJson();
-final restored = Project.fromJson(json);
+final json = task.toJson();
+final restored = Task.fromJson(json);
 ```

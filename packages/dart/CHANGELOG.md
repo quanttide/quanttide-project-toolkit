@@ -1,6 +1,19 @@
-## 0.1.0+1
+# CHANGELOG
 
-- 更新 README：修正包名引用
+
+## 0.2.0
+
+> **Breaking changes** — 从 0.1.x 升级需迁移代码。
+
+- **重命名** `BoardCard` → `Task`，保留 `BoardCard` 为 deprecated typedef
+- **移除** `Board`、`BoardList` 模型（原看板 UI 概念）
+- **新增** `Project.id`、`Project.description` 字段
+- **移除** `Project.board` 字段（Project 不再关联看板）
+- **新增** `Task.type`、`Task.priority`、`Task.assigner` 字段
+- **移除** `Task.custom`、`Task.date` 字段（`date` 不再保留）
+- **新增** `Task.startAt`、`Task.endAt`（计划时间）
+- **新增** 审计字段：`createdBy`、`createdAt`、`updatedBy`、`updatedAt`（Project 和 Task）
+- JSON 序列化中时间字段使用 ISO 8601 字符串格式
 
 ## 0.1.0
 
