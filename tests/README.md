@@ -4,29 +4,108 @@
 
 ## 背景
 
-| 包 | 语言 | 字段风格 | 定位 |
-|---|---|---|---|
-| `dart/` | Dart | 源码 snake_case，JSON camelCase | 参考实现 |
-| `python/` | Python (Pydantic) | snake_case | 对照实现 |
-| `fastapi/` | Python (FastAPI) | snake_case | CRUD 路由 |
+| 包 | 语言 | 字段风格 | 
+|---|---|---|
+| `dart/` | Dart | 源码 snake_case，JSON camelCase |
+| `python/` | Python (Pydantic) | snake_case |
+| `fastapi/` | Python (FastAPI) | snake_case |
 
-Dart 包是数据模型参考实现（`dart/AGENTS.md`），新字段先在 Dart 定义，Python 等语言对照实现。
+各语言独立演化，通过契约束保证模型同步。
 
-## 方案：共享 JSON Fixture
+## 方案：JSON Schema 作为契约（推荐）
 
-仓库根 `tests/fixtures/` 下存放中立 JSON 测试数据，两端各自消费。
+以语言无关的 JSON Schema 作为单一事实来源（SSOT），各语言实现自行验证一致性。
 
 ```
 tests/
   README.md
+  schemas/
+    task.json
+    project.json
   fixtures/
     task.json
     project.json
 ```
 
+### Schema 定义
+
+**`tests/schemas/task.json`：**
+
+```json
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Task",
+  "properties": {
+    "id":               {"type": "string"},
+    "title":            {"type": "string"},
+    "description":      {"type": "string", "default": ""},
+    "type":             {"type": "string"},
+    "category":         {"type": "string"},
+    "tags":             {"type": "object", "additionalProperties": {"type": "string"}, "default": {}},
+    "status":           {"type": "string"},
+    "priority":         {"type": "string"},
+    "assigner":         {"type": "string"},
+    "assignee":         {"type": "string"},
+    "start_at":         {"type": "string", "format": "date-time"},
+    "end_at":           {"type": "string", "format": "date-time"},
+    "created_by":       {"type": "string"},
+    "created_at":       {"type": "string", "format": "date-time"},
+    "updated_by":       {"type": "string"},
+    "updated_at":       {"type": "string", "format": "date-time"}
+  },
+  "required": ["id", "title"]
+}
+```
+
+> 字段名使用 snake_case，这是跨语言最通用的命名惯例。各语言在序列化/反序列化时按需做 case 转换。
+
+### Python 侧验证
+
+```python
+import json, jsonschema
+from pathlib import Path
+from quanttide_project.models.task import Task
+
+SCHEMA = json.loads(Path("tests/schemas/task.json").read_text())
+
+class TestContract:
+    def test_task_serialization(self):
+        t = Task(id="t1", title="Test", type="task")
+        data = t.model_dump(mode="json", exclude_none=True)
+        jsonschema.validate(data, SCHEMA)
+```
+
+### Dart 侧验证
+
+```dart
+import 'dart:convert';
+import 'dart:io';
+import 'package:json_schema/json_schema.dart';
+
+void main() async {
+  final schema = await JsonSchema.create(
+    json.decode(await File('tests/schemas/task.json').readAsString()),
+  );
+  final task = Task(id: 't1', title: 'Test');
+  final data = task.toJson();  // camelCase
+  // 转为 snake_case 匹配 schema
+  final snake = <String, dynamic>{};
+  data.forEach((k, v) {
+    final s = k.replaceAllMapped(RegExp(r'[A-Z]'), (m) => '_${m.group(0)!.toLowerCase()}');
+    snake[s] = v;
+  });
+  print(schema.validate(snake));  // true
+}
+```
+
+## 备选：共享 Fixture Round-Trip
+
+不依赖 JSON Schema 时的轻量方案。
+
 ### Fixture 格式
 
-用 **camelCase** JSON（与 Dart `toJson()`/`fromJson()` 一致），Python 侧反序列化前做 `snake_case` 转换。
+统一使用 snake_case JSON（Python 原生风格），Dart 侧反序列化前做 `camelCase` 转换。
 
 **`tests/fixtures/task.json`：**
 
@@ -42,78 +121,62 @@ tests/
   "priority": "high",
   "assigner": "alice",
   "assignee": "bob",
-  "startAt": "2026-05-13T00:00:00Z",
-  "endAt": "2026-05-13T00:00:00Z",
-  "createdBy": "alice",
-  "createdAt": "2026-05-13T00:00:00Z",
-  "updatedBy": "bob",
-  "updatedAt": "2026-05-13T00:00:00Z"
+  "start_at": "2026-05-13T00:00:00Z",
+  "end_at": "2026-05-13T00:00:00Z",
+  "created_by": "alice",
+  "created_at": "2026-05-13T00:00:00Z",
+  "updated_by": "bob",
+  "updated_at": "2026-05-13T00:00:00Z"
 }
 ```
 
-**Dart 侧消费：**
-
-```dart
-import 'dart:io';
-final json = File('tests/fixtures/task.json');
-final task = Task.fromJson(jsonDecode(await json.readAsString()));
-```
-
-**Python 侧消费：**
-
-```python
-import json
-from pathlib import Path
-
-def camel_to_snake(d: dict) -> dict:
-    import re
-    return {
-        re.sub(r'(?<!^)(?=[A-Z])', '_', k).lower(): v
-        for k, v in d.items()
-    }
-
-data = camel_to_snake(json.loads(Path("tests/fixtures/task.json").read_text()))
-t = Task.model_validate(data)
-```
-
-## 交叉验证
-
-新增 `tests/test_contract.py`（Python），从共享 fixture 读取→反序列化→断言关键字段。
+### Python 侧消费
 
 ```python
 import json
 from pathlib import Path
 from quanttide_project.models.task import Task
 
-FIXTURES = Path(__file__).parents[2] / "tests" / "fixtures"
+data = json.loads(Path("tests/fixtures/task.json").read_text())
+t = Task.model_validate(data)
+assert t.title == "Test"
+```
 
-def camel_to_snake(d: dict) -> dict:
-    import re
-    return {
-        re.sub(r'(?<!^)(?=[A-Z])', '_', k).lower(): v
-        for k, v in d.items()
-    }
+### Dart 侧消费
 
-class TestContract:
-    def test_task_fixture(self):
-        data = json.loads((FIXTURES / "task.json").read_text())
-        t = Task.model_validate(camel_to_snake(data))
-        assert t.title == "Test"
-        assert t.type == "task"
-        assert t.tags == {"env": "prod"}
+```dart
+import 'dart:convert';
+import 'dart:io';
+
+Map<String, dynamic> snakeToCamel(Map<String, dynamic> input) {
+  final result = <String, dynamic>{};
+  input.forEach((k, v) {
+    final camel = k.replaceAllMapped(RegExp(r'_(.)'), (m) => m.group(1)!.toUpperCase());
+    result[camel] = v is Map ? snakeToCamel(v) : v;
+  });
+  return result;
+}
+
+final json = jsonDecode(await File('tests/fixtures/task.json').readAsString());
+final task = Task.fromJson(snakeToCamel(json));
 ```
 
 ## CI 集成
 
-GitHub Actions 中执行：
+GitHub Actions：
 
 ```yaml
-- run: pip install -e packages/python
-- run: python -m pytest packages/python/tests tests/
+- name: Validate Python against schema
+  run: |
+    pip install jsonschema
+    python -m pytest tests/ packages/python/tests/
+
+- name: Validate Dart against schema
+  run: dart run packages/dart/test/contract_test.dart
 ```
 
-## 注意事项
+## 工作流
 
-- 添加新字段时，先更新 **Dart 模型**，再更新 **共享 fixture**，最后更新各语言实现
-- fixture 字段增减应当视为契约变更，需要同步更新所有消费方
-- Dart `fromJson` 默认 camelCase，Python `model_validate` 默认 snake_case，两者通过 `camel_to_snake` 桥接
+1. **新增字段**：先更新 JSON Schema（`tests/schemas/`），再更新各语言实现
+2. **修改字段**：更新 Schema + fixture，所有语言必须通过 Schema 验证
+3. **每次提交**：CI 中跑 Schema 验证 + round-trip 测试
