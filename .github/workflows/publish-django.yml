@@ -2,6 +2,8 @@ name: publish-django
 on:
   release:
     types: [published]
+    tags:
+      - 'django/*'
 jobs:
   publish:
     runs-on: ubuntu-latest

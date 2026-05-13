@@ -2,6 +2,8 @@ name: publish-fastapi
 on:
   release:
     types: [published]
+    tags:
+      - 'fastapi/*'
 jobs:
   publish:
     runs-on: ubuntu-latest

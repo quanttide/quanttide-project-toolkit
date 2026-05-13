@@ -2,6 +2,8 @@ name: publish-python
 on:
   release:
     types: [published]
+    tags:
+      - 'python/*'
 jobs:
   publish:
     runs-on: ubuntu-latest

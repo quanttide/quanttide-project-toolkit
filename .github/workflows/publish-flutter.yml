@@ -2,6 +2,8 @@ name: publish-flutter
 on:
   release:
     types: [published]
+    tags:
+      - 'flutter/*'
 jobs:
   publishing:
     runs-on: ubuntu-latest
