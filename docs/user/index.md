@@ -159,6 +159,8 @@ final p2 = Project.fromJson(data);
 :::
 ::::
 
+通过 FastAPI CRUD 层收发 JSON 时，字段名自动在 Python snake_case 与 JSON camelCase 之间转换（`created_at` ↔ `createdAt`）。
+
 ### 更新 Task
 
 Task 是不可变模型，通过 `replace`（Python）或 `copyWith`（Dart）创建修改后的新实例。
@@ -208,6 +210,16 @@ app.include_router(TaskRouter.build_default())
 | DELETE | `/projects/{id}` | 删除项目 |
 
 Task 同理，路径为 `/tasks`。
+
+JSON 请求与响应使用 camelCase，Python 代码保持 snake_case，自动映射：
+
+```json
+POST /projects
+{"id": "p1", "name": "test", "title": "测试项目", "createdBy": "alice"}
+
+→ 200
+{"id": "p1", "name": "test", "title": "测试项目", "description": "", "createdBy": "alice", "createdAt": "...", "updatedBy": null, "updatedAt": "..."}
+```
 
 ## UI 组件（Flutter）
 
