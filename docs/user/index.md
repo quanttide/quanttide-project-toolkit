@@ -10,9 +10,17 @@
 
 ```bash
 pip install quanttide-project
-# FastAPI 集成（可选）
+```
+:::
+
+:::{tab-item} FastAPI
+:sync: fastapi
+
+```bash
 pip install fastapi-quanttide-project
 ```
+
+自动安装 `quanttide-project` 和 `fastapi`。
 :::
 
 :::{tab-item} Dart
