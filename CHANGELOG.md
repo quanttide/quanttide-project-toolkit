@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2] - 2026-05-13
+
+### Added
+
+- **FastAPI CamelCase 支持** (`packages/fastapi`): JSON 输入输出自动转换 camelCase，Python 代码保持 snake_case
+- **文档更新**: 用户指南补充 camelCase JSON 传输约定说明
+
 ## [0.1.0] - 2026-05-13
 
 ### Added
