@@ -212,7 +212,7 @@ wheels = [
 
 [[package]]
 name = "fastapi-quanttide-project"
-version = "0.1.0"
+version = "0.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
@@ -606,7 +606,7 @@ wheels = [
 
 [[package]]
 name = "quanttide-project"
-version = "0.1.0"
+version = "0.1.1"
 source = { directory = "../python" }
 dependencies = [
     { name = "pydantic" },

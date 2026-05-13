@@ -2,11 +2,23 @@ from datetime import datetime, timezone
 from typing import Any, Callable, Optional, Type
 
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, create_model
+from pydantic import BaseModel, ConfigDict, create_model
 from quanttide_project import Project, Task
 
 AUDIT_FIELDS = {"created_by", "created_at", "updated_by", "updated_at"}
 IDENTITY_FIELDS = {"id"}
+
+
+def to_camel(s: str) -> str:
+    first, *rest = s.split('_')
+    return first + ''.join(p.capitalize() for p in rest)
+
+
+class CamelCaseModel(BaseModel):
+    model_config = ConfigDict(
+        alias_generator=to_camel,
+        populate_by_name=True,
+    )
 
 
 def _mutable_fields(model: Type[BaseModel]) -> list[str]:
@@ -25,7 +37,7 @@ def _build_create_schema(model: Type[BaseModel], name: str) -> Type[BaseModel]:
     fields["id"] = (model.model_fields["id"].annotation, ...)
     if "created_by" in model.model_fields:
         fields["created_by"] = (model.model_fields["created_by"].annotation, None)
-    return create_model(f"{name}Create", **fields)
+    return create_model(f"{name}Create", __base__=CamelCaseModel, **fields)
 
 
 def _build_update_schema(model: Type[BaseModel], name: str) -> Type[BaseModel]:
@@ -33,7 +45,15 @@ def _build_update_schema(model: Type[BaseModel], name: str) -> Type[BaseModel]:
     for field_name in _mutable_fields(model):
         annotation = model.model_fields[field_name].annotation
         fields[field_name] = (Optional[annotation], None)
-    return create_model(f"{name}Update", **fields)
+    return create_model(f"{name}Update", __base__=CamelCaseModel, **fields)
+
+
+def _build_response_schema(model: Type[BaseModel], name: str) -> Type[BaseModel]:
+    fields: dict[str, Any] = {}
+    for field_name, field_info in model.model_fields.items():
+        default = ... if field_info.is_required() else field_info.default
+        fields[field_name] = (field_info.annotation, default)
+    return create_model(f"{name}Response", __base__=CamelCaseModel, **fields)
 
 
 def _has_replace(model: Type[BaseModel]) -> bool:
@@ -95,8 +115,9 @@ class ModelRouter:
         model = self.model
         create_schema = _build_create_schema(model, model.__name__)
         update_schema = _build_update_schema(model, model.__name__)
+        response_schema = _build_response_schema(model, model.__name__)
 
-        @router.post("", response_model=model)
+        @router.post("", response_model=response_schema, response_model_by_alias=True)
         def handle_create(body: create_schema):
             now = datetime.now(timezone.utc)
             kwargs = body.model_dump()
@@ -105,18 +126,30 @@ class ModelRouter:
             instance = model(**kwargs)
             return create(instance.id, instance)
 
-        @router.get("")
+        @router.get(
+            "",
+            response_model=list[response_schema],
+            response_model_by_alias=True,
+        )
         def handle_list():
             return list_all()
 
-        @router.get("/{item_id}", response_model=model)
+        @router.get(
+            "/{item_id}",
+            response_model=response_schema,
+            response_model_by_alias=True,
+        )
         def handle_get(item_id: str):
             instance = get(item_id)
             if instance is None:
                 raise HTTPException(404, f"{model.__name__} not found")
             return instance
 
-        @router.patch("/{item_id}", response_model=model)
+        @router.patch(
+            "/{item_id}",
+            response_model=response_schema,
+            response_model_by_alias=True,
+        )
         def handle_update(item_id: str, body: update_schema):
             instance = get(item_id)
             if instance is None:
