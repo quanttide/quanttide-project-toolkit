@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3] - 2026-05-13
+
+### Added
+
+- **跨语言契约测试**: 以 JSON Schema 作为语言无关的 SSOT，`tests/schemas/` + `tests/fixtures/` 共享
+- **Python 契约测试** (`packages/python`): Schema 验证、Fixture round-trip、序列化符合性
+- **Dart 契约测试** (`packages/dart`): 同 Python 侧，含 snake_case ↔ camelCase 转换
+
 ## [0.1.2] - 2026-05-13
 
 ### Added
