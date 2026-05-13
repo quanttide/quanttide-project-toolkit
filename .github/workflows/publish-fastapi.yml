@@ -2,10 +2,9 @@ name: publish-fastapi
 on:
   release:
     types: [published]
-    tags:
-      - 'fastapi/*'
 jobs:
   publish:
+    if: startsWith(github.ref, 'refs/tags/fastapi/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
