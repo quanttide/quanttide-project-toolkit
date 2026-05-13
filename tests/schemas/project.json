@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Project",
+  "properties": {
+    "id":               {"type": "string"},
+    "name":             {"type": "string"},
+    "title":            {"type": "string"},
+    "description":      {"type": "string", "default": ""},
+    "created_by":       {"type": "string"},
+    "created_at":       {"type": "string", "format": "date-time"},
+    "updated_by":       {"type": "string"},
+    "updated_at":       {"type": "string", "format": "date-time"}
+  },
+  "required": ["id", "name", "title"]
+}

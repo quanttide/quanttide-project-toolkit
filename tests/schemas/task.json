@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Task",
+  "properties": {
+    "id":               {"type": "string"},
+    "title":            {"type": "string"},
+    "description":      {"type": "string", "default": ""},
+    "type":             {"type": "string"},
+    "category":         {"type": "string"},
+    "tags":             {"type": "object", "additionalProperties": {"type": "string"}, "default": {}},
+    "status":           {"type": "string"},
+    "priority":         {"type": "string"},
+    "assigner":         {"type": "string"},
+    "assignee":         {"type": "string"},
+    "start_at":         {"type": "string", "format": "date-time"},
+    "end_at":           {"type": "string", "format": "date-time"},
+    "created_by":       {"type": "string"},
+    "created_at":       {"type": "string", "format": "date-time"},
+    "updated_by":       {"type": "string"},
+    "updated_at":       {"type": "string", "format": "date-time"}
+  },
+  "required": ["id", "title"]
+}

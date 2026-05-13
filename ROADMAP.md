@@ -9,10 +9,11 @@
 
 ### 跨语言契约测试
 
-- [ ] 创建共享 JSON Fixture（`tests/fixtures/task.json`、`project.json`）
-- [ ] Python 侧交叉验证测试（`tests/test_contract.py`）
+- [x] 创建共享 JSON Schema（`tests/schemas/task.json`、`project.json`）
+- [x] 创建共享 JSON Fixture（`tests/fixtures/task.json`、`project.json`）
+- [x] Python 侧契约测试（`packages/python/tests/test_contract.py`）
+- [x] Dart 侧契约测试（`packages/dart/test/contract_test.dart`）
 - [ ] CI 集成契约测试
-- [ ] 生成 JSON Schema 作为正式契约
 
 ### 未来增强
 
