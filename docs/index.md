@@ -1,4 +1,4 @@
-# quanttide-project-toolkit
+# 量潮项目管理工具箱
 
 一套跨语言的项目管理 SDK，覆盖数据模型、API 路由、UI 组件。
 

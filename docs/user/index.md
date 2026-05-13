@@ -1,8 +1,4 @@
----
-title: quanttide-project-toolkit 用户指南
----
-
-# quanttide-project-toolkit
+# 用户文档
 
 一套跨语言的项目管理 SDK，覆盖数据模型、API 路由、UI 组件。
 
