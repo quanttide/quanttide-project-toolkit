@@ -1,6 +1,6 @@
 # fastapi-quanttide-project
 
-给 Project 和 Task 配上标准 CRUD 路由。
+给 `Project` 和 `Task` 配上标准 CRUD 路由。JSON 传输使用 camelCase（`createdAt`），Python 代码保持 snake_case（`created_at`）。
 
 ## 装
 
@@ -38,9 +38,23 @@ app.include_router(ProjectRouter.build(
 
 五个回调分别是 create / get / list_all / update / delete。
 
+## 请求与响应
+
+JSON 输入输出使用 camelCase：
+
+```json
+POST /projects
+{"id": "p1", "name": "test", "title": "测试项目", "createdBy": "alice"}
+
+→ 200
+{"id": "p1", "name": "test", "title": "测试项目", "description": "", "createdBy": "alice", "createdAt": "...", "updatedBy": null, "updatedAt": "..."}
+```
+
+Python 代码仍是 snake_case，自动映射。
+
 ## PATCH 时发生了什么
 
-Task 有 `replace()` 方法——调 `task.replace(status="done")`，只改传了的字段。Project 没有——新数据盖到老数据上，`updated_at` 自动刷新。审计字段你不用管。
+Task 有 `replace()` 方法——调 `task.replace(status="done")`，只改传了的字段。Project 没有——新数据盖到老数据上，`updatedAt` 自动刷新。审计字段你不用管。
 
 ## 用通用版本
 

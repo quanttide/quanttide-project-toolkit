@@ -66,9 +66,11 @@ ModelRouter(model, prefix=None, tags=None)
 
 ## Schema 推导
 
+所有 Schema 继承 `CamelCaseModel`，JSON 输入输出自动转 camelCase： `created_at` ↔ `createdAt`。Python 代码中仍用 snake_case。
+
 ### CreateSchema
 
-`{ModelName}Create`。`id` 必填，审计字段排除，`created_by` 可选，其余保留模型默认值。
+`{ModelName}Create`。`id` 必填，审计字段排除，`createdBy` 可选，其余保留模型默认值。
 
 ### UpdateSchema
 
@@ -76,7 +78,7 @@ ModelRouter(model, prefix=None, tags=None)
 
 ### 审计字段
 
-`created_by`、`created_at`、`updated_by`、`updated_at`。POST 自动写入 `created_at`、`updated_at`，PATCH 刷新 `updated_at`。
+`createdBy`、`createdAt`、`updatedBy`、`updatedAt`。POST 自动写入 `createdAt`、`updatedAt`，PATCH 刷新 `updatedAt`。
 
 ---
 
