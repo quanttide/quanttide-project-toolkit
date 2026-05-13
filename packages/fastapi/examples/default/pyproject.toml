@@ -1,0 +1,16 @@
+[project]
+name = "fastapi-example"
+version = "0.1.0"
+description = "FastAPI 示例 - 演示 fastapi_quanttide_project 库用法"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.uv.sources]
+fastapi-quanttide-project = { path = "../.." }
+
+[dependency-groups]
+dev = [
+    "fastapi-quanttide-project",
+    "uvicorn[standard]>=0.34.0",
+    "httpx>=0.28.0",
+]

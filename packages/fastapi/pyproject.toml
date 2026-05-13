@@ -1,0 +1,40 @@
+[project]
+name = "fastapi-quanttide-project"
+version = "0.1.0"
+description = "量潮项目管理FastAPI工具箱"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "QuantTide Inc.", email = "opensource@quanttide.com" },
+]
+dependencies = [
+    "quanttide-project",
+    "fastapi>=0.115.0",
+]
+
+[tool.uv.sources]
+quanttide-project = { path = "../python" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.12",
+    "httpx>=0.28.0",
+    "uvicorn[standard]>=0.34.0",
+]
+
+[tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
