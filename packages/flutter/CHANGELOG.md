@@ -1,6 +1,8 @@
-# CHANGELOG
+# Changelog
 
-## 0.1.0
+## [0.1.0] - 2026-05-12
+
+### Added
 
 - 新增 `BoardColumn`：白底圆角容器，`title` + `content` 双插槽
 - 新增 `BoardCard`：卡片容器，`title` + `description` + `onTap`
