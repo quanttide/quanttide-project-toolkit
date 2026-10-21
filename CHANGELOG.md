@@ -1,5 +1,11 @@
 # Changelog
 
+## [未发布]
+
+### 变更
+
+- 删除 `ROADMAP.md`（内容已过时）。随之撤下的未完成项：lint + test CI、枚举类（`ProjectType` / `Status` / `Priority`）、Rust SDK。仓库现状：`packages/{python,fastapi}` 均有 README 与 CHANGELOG；`.github/workflows/` 只有 `deploy-docs.yml` 与五个 `publish-*`
+
 ## [0.1.2] - 2026-05-13
 
 ### Added
