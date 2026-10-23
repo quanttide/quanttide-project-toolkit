@@ -1,6 +1,6 @@
 # fastapi-quanttide-project
 
-量潮项目管理 FastAPI 工具箱。
+量潮项目管理 FastAPI 标准库。
 
 ## 用法
 
